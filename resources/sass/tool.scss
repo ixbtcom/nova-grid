@@ -1,0 +1,21 @@
+.card.overflow-hidden form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .bg-30.flex.px-8.py-4 {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+}
+
+.card.overflow-hidden form>div:nth-of-type(1) {
+    display: block;
+    width: 100%;
+}
+
+.card.overflow-hidden form>div {
+    display: inline;
+}
