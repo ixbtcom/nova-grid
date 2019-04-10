@@ -1,8 +1,9 @@
 <template>
-    <div :class="field.size || 'w-full'">
-        <field-wrapper >
-            <div class="flex flex-wrap w-full p-4">
-                <div class="font-bold mb-2 w-full">
+    <div :class="field.size">
+        <field-wrapper>
+            <div :class="fieldWrapperClasses">
+
+                <div :class="fieldLabelClasses">
                     <slot>
                         <form-label
                         :label-for="field.attribute"
@@ -12,7 +13,7 @@
                     </form-label>
                 </slot>
             </div>
-            <div  :class="fieldClasses">
+            <div :class="fieldClasses">
                 <slot name="field" />
 
                 <help-text class="error-text mt-2 text-danger" v-if="showErrors && hasError">
@@ -25,6 +26,8 @@
         </div>
     </field-wrapper>
 </div>
+
+
 </template>
 
 <script>
@@ -42,15 +45,19 @@
         },
 
         mounted() {
-            let element = this.$parent.$el.parentElement;
-            let parent = element.parentNode;
-            while (element.firstChild) parent.insertBefore(element.firstChild, element);
-            parent.removeChild(element);
-        },
+           if (this.hasSize) {
+            this.$parent.$parent.$el.classList.add('nova-grid-card-styles');
 
+             let element = this.$parent.$el.parentElement;
+             console.log(element);
+             let parent = element.parentNode;
+             while (element.firstChild) parent.insertBefore(element.firstChild, element);
+             parent.removeChild(element);
+         }
+     },
 
-        computed: {
-            fieldLabel() {
+     computed: {
+        fieldLabel() {
             // If the field name is purposefully an empty string, then
             // let's show it as such
             if (this.fieldName === '') {
@@ -60,9 +67,60 @@
             return this.fieldName || this.field.singularLabel || this.field.name
         },
 
+        hasSize() {
+            return this.field.size !== undefined;
+        },
+
+        fieldLabelClasses() {
+            return this.hasSize ? 'nova-grid-field-label' : 'w-1/5 py-6 px-8';
+        },
+
+        fieldWrapperClasses() {
+            return this.field.size !== undefined ? 'nova-grid-wrapper' : 'flex border-b border-40 w-full';
+        },
+
         fieldClasses() {
-            return 'w-full';
+
+            if(this.hasSize) {
+                return 'w-full';
+            }
+
+            return this.fullWidthContent ? 'py-6 px-8 w-4/5' : 'py-6 px-8 w-1/2'
         },
     },
 }
 </script>
+<style lang="scss">
+
+.nova-grid-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1rem;
+
+}
+
+.nova-grid-field-label {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.nova-grid-card-styles {
+    > form {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+
+        .bg-30.flex.px-8.py-4 {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+    }
+
+}
+
+
+</style>
