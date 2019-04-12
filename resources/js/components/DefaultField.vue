@@ -1,6 +1,5 @@
-
 <template>
-    <div :class="field.size">
+    <div ref="field-wrapper">
         <field-wrapper>
             <div :class="fieldWrapperClasses">
 
@@ -45,19 +44,18 @@
             fullWidthContent: { type: Boolean, default: false },
         },
 
+        data:() => ({
+            ready: false,
+        }),
+
         mounted() {
-           if (this.hasSize) {
+         if (this.hasSize) {
             this.$parent.$parent.$el.classList.add('nova-grid-card-styles');
+            this.$refs['field-wrapper'].parentNode.classList.add(this.field.size)
+        }
+    },
 
-             let element = this.$parent.$el.parentElement;
-             console.log(element);
-             let parent = element.parentNode;
-             while (element.firstChild) parent.insertBefore(element.firstChild, element);
-             parent.removeChild(element);
-         }
-     },
-
-     computed: {
+    computed: {
         fieldLabel() {
             // If the field name is purposefully an empty string, then
             // let's show it as such
