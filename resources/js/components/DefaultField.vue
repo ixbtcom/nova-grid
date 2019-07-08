@@ -10,6 +10,7 @@
                         :class="{ 'mb-2': showHelpText && field.helpText }"
                         >
                         {{ fieldLabel }}
+                            <help-text class="help-text mt-2" v-if="showHelpText"> {{ field.helpText }} </help-text>
                     </form-label>
                 </slot>
             </div>
@@ -20,7 +21,6 @@
                     {{ firstError }}
                 </help-text>
 
-                <help-text class="help-text mt-2" v-if="showHelpText"> {{ field.helpText }} </help-text>
             </div>
 
         </div>
@@ -51,7 +51,7 @@
         mounted() {
          if (this.hasSize) {
             this.$parent.$parent.$el.classList.add('nova-grid-card-styles');
-            this.$refs['field-wrapper'].parentNode.classList.add(this.field.size)
+            this.$refs['field-wrapper'].classList.add(this.field.size)
         }
     },
 
@@ -106,7 +106,7 @@
 }
 
 .nova-grid-card-styles {
-    > form {
+
         display: flex;
         flex-wrap: wrap;
         width: 100%;
@@ -117,7 +117,7 @@
             justify-content: flex-end;
         }
 
-    }
+
 
 }
 

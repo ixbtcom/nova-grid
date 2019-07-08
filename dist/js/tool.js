@@ -170,7 +170,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.nova-grid-wrapper {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  padding: 1rem;\n}\n.nova-grid-field-label {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n.nova-grid-card-styles > form {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n}\n.nova-grid-card-styles > form .bg-30.flex.px-8.py-4 {\n    width: 100%;\n    display: flex;\n    justify-content: flex-end;\n}\n", ""]);
+exports.push([module.i, "\n.nova-grid-wrapper {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  padding: 1rem;\n}\n.nova-grid-field-label {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n.nova-grid-card-styles {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n}\n.nova-grid-card-styles .bg-30.flex.px-8.py-4 {\n    width: 100%;\n    display: flex;\n    justify-content: flex-end;\n}\n", ""]);
 
 // exports
 
@@ -690,7 +690,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         if (this.hasSize) {
             this.$parent.$parent.$el.classList.add('nova-grid-card-styles');
-            this.$refs['field-wrapper'].parentNode.classList.add(this.field.size);
+            this.$refs['field-wrapper'].classList.add(this.field.size);
         }
     },
 
@@ -10981,9 +10981,15 @@ var render = function() {
                     _vm._v(
                       "\n                        " +
                         _vm._s(_vm.fieldLabel) +
-                        "\n                    "
-                    )
-                  ]
+                        "\n                            "
+                    ),
+                    _vm.showHelpText
+                      ? _c("help-text", { staticClass: "help-text mt-2" }, [
+                          _vm._v(" " + _vm._s(_vm.field.helpText) + " ")
+                        ])
+                      : _vm._e()
+                  ],
+                  1
                 )
               ])
             ],
@@ -11008,12 +11014,6 @@ var render = function() {
                       )
                     ]
                   )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.showHelpText
-                ? _c("help-text", { staticClass: "help-text mt-2" }, [
-                    _vm._v(" " + _vm._s(_vm.field.helpText) + " ")
-                  ])
                 : _vm._e()
             ],
             2
