@@ -690,7 +690,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         if (this.hasSize) {
             this.$parent.$parent.$el.classList.add('nova-grid-card-styles');
-            this.$refs['field-wrapper'].classList.add(this.field.size);
+            var $fieldRefs = this.$refs;
+            this.field.size.split(' ').forEach(function (singleClass) {
+                $fieldRefs['field-wrapper'].classList.add(singleClass);
+            });
         }
     },
 

@@ -51,7 +51,11 @@
         mounted() {
          if (this.hasSize) {
             this.$parent.$parent.$el.classList.add('nova-grid-card-styles');
-            this.$refs['field-wrapper'].classList.add(this.field.size)
+            const $fieldRefs = this.$refs;
+            this.field.size.split(' ').forEach(function(singleClass)
+            {
+                $fieldRefs['field-wrapper'].classList.add(singleClass);
+            });
         }
     },
 
