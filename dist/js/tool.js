@@ -170,7 +170,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.nova-grid-wrapper {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  padding: 1rem;\n}\n.nova-grid-field-label {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n.nova-grid-card-styles {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n}\n.nova-grid-card-styles .bg-30.flex.px-8.py-4 {\n    width: 100%;\n    display: flex;\n    justify-content: flex-end;\n}\n", ""]);
+exports.push([module.i, "\n.nova-grid-wrapper {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  padding: 1rem;\n}\n.nova-grid-field-label {\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n.nova-grid-card-styles {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n}\n.nova-grid-card-styles .bg-30.flex.px-8.py-4 {\n    width: 100%;\n    display: flex;\n    justify-content: flex-end;\n}\n.help-text-tooltip-container {\n  display: inline-block;\n}\n.help-text-tooltip {\n  cursor: pointer;\n  padding: 0 .4rem;\n  border: 1px solid #ccc;\n  border-radius: 20rem;\n  background: #ffa;\n}\n.help-text-tooltip:hover ~ .help-text-tooltip-hidden {\n  display: block;\n}\n.help-text-tooltip-hidden {\n  display: none;\n  position: absolute;\n  padding: 1rem;\n  background: #fff;\n  border: 1px solid #999;\n  border-radius: 0.5rem;\n  z-index: 100;\n  max-width: 300px;\n}\n", ""]);
 
 // exports
 
@@ -635,6 +635,14 @@ module.exports = function normalizeComponent (
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_nova__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10984,15 +10992,34 @@ var render = function() {
                     _vm._v(
                       "\n                        " +
                         _vm._s(_vm.fieldLabel) +
-                        "\n                            "
+                        "\n                        "
                     ),
-                    _vm.showHelpText
-                      ? _c("help-text", { staticClass: "help-text mt-2" }, [
-                          _vm._v(" " + _vm._s(_vm.field.helpText) + " ")
-                        ])
+                    _vm.showHelpText && _vm.field.helpText
+                      ? _c(
+                          "div",
+                          { staticClass: "help-text-tooltip-container" },
+                          [
+                            _c("div", { staticClass: "help-text-tooltip" }, [
+                              _vm._v(
+                                "\n                                ?\n                            "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "help-text-tooltip-hidden" },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(_vm.field.helpText) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          ]
+                        )
                       : _vm._e()
-                  ],
-                  1
+                  ]
                 )
               ])
             ],

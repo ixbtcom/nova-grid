@@ -9,23 +9,31 @@
                         :label-for="field.attribute"
                         :class="{ 'mb-2': showHelpText && field.helpText }"
                         >
-                        {{ fieldLabel }}
-                            <help-text class="help-text mt-2" v-if="showHelpText"> {{ field.helpText }} </help-text>
-                    </form-label>
-                </slot>
+                            {{ fieldLabel }}
+                            <div v-if="showHelpText && field.helpText" class="help-text-tooltip-container">
+                                <div class="help-text-tooltip">
+                                    ?
+                                </div>
+                                <div class="help-text-tooltip-hidden">
+                                    {{ field.helpText }}
+                                </div>
+                            </div>
+                            <!-- <help-text class="help-text mt-2" v-if="showHelpText"> {{ field.helpText }} </help-text> -->
+                        </form-label>
+                    </slot>
+                </div>
+                <div :class="fieldClasses">
+                    <slot name="field" />
+
+                    <help-text class="error-text mt-2 text-danger" v-if="showErrors && hasError">
+                        {{ firstError }}
+                    </help-text>
+
+                </div>
+
             </div>
-            <div :class="fieldClasses">
-                <slot name="field" />
-
-                <help-text class="error-text mt-2 text-danger" v-if="showErrors && hasError">
-                    {{ firstError }}
-                </help-text>
-
-            </div>
-
-        </div>
-    </field-wrapper>
-</div>
+        </field-wrapper>
+    </div>
 
 
 </template>
@@ -120,9 +128,30 @@
             display: flex;
             justify-content: flex-end;
         }
+}
 
-
-
+.help-text-tooltip-container {
+    display: inline-block;
+}
+.help-text-tooltip {
+    cursor: pointer;
+    padding: 0 .4rem;
+    border: 1px solid #ccc;
+    border-radius: 20rem;
+    background: #ffa;
+}
+.help-text-tooltip:hover ~ .help-text-tooltip-hidden {
+    display: block;
+}
+.help-text-tooltip-hidden {
+    display: none;
+    position: absolute;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 0.5rem;
+    z-index: 100;
+    max-width: 300px;
 }
 
 
