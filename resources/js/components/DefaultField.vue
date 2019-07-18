@@ -155,4 +155,36 @@
 }
 
 
+// .help-text-tooltip {
+//     display: inline-block;
+//     cursor: pointer;
+//     padding: 0 .4rem;
+//     border: 1px solid #ccc;
+//     border-radius: 20rem;
+//     background: #ffa;
+// }
+// .help-text-tooltip:hover ~ .help-text-tooltip-hidden {
+//     max-height: inherit;
+//     // transform: translate(0, 0%);
+// }
+// .help-text-tooltip-hidden {
+//     max-height: 0;
+//     // transform: translate(0, -100%);
+//     overflow: hidden;
+//     transition: all .3s ease;
+//     // transition: transform .3s ease;
+// }
+
+.w-fit-size-gallery {
+    min-width: 356px;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 1580px) {
+    .w-fit-size-gallery {
+        width: 100%;
+        flex: auto;
+    }
+}
+
 </style>
